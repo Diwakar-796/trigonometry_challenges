@@ -28,12 +28,10 @@ function draw(world) {
     r.BeginDrawing();
     r.ClearBackground(r.BLACK);
 
-    r.DrawCircleLines(world.centerX, world.centerY, world.radius, r.WHITE);
-
     for (let i = 0; i < world.numberOfPoints; i++) {
         const x = world.centerX + world.radius * Math.cos(world.angle * i);
         const y = world.centerY + world.radius * Math.sin(world.angle * i);
-        r.DrawCircle(x, y, 2, r.RED);
+        r.DrawCircle(x, y, 2, r.WHITE);
     }
 
     r.EndDrawing();
