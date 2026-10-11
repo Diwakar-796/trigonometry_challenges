@@ -7,7 +7,10 @@ function setup() {
     const centerY = height / 2;
     const radius = 150;
     const numberOfPoints = 12;
-    const angle = Math.PI / (numberOfPoints / 2);
+    const degree = calcDegree(numberOfPoints);
+    const radian = calcRadian(degree);
+
+    // const angle = (2 * Math.PI) / numberOfPoints;
 
     r.SetTraceLogLevel(r.LOG_ERROR);
     r.InitWindow(width, height, "points around a circle");
@@ -19,9 +22,19 @@ function setup() {
         radius,
         centerX,
         centerY,
-        angle,
+        // angle,
+        degree,
+        radian,
         numberOfPoints,
     };
+}
+
+function calcDegree(numberOfPoints) {
+    return 360 / numberOfPoints;
+}
+
+function calcRadian(degree) {
+    return degree * (Math.PI / 180);
 }
 
 function draw(world) {
@@ -29,12 +42,16 @@ function draw(world) {
     r.ClearBackground(r.BLACK);
 
     for (let i = 0; i < world.numberOfPoints; i++) {
-        const x = world.centerX + world.radius * Math.cos(world.angle * i);
-        const y = world.centerY + world.radius * Math.sin(world.angle * i);
-        r.DrawCircle(x, y, 2, r.WHITE);
+        drawPoints(world, i);
     }
 
     r.EndDrawing();
+}
+
+function drawPoints(world, i) {
+    const x = world.centerX + world.radius * Math.cos(world.radian * i);
+    const y = world.centerY + world.radius * Math.sin(world.radian * i);
+    r.DrawCircle(x, y, 2, r.WHITE);
 }
 
 function loop(world) {
