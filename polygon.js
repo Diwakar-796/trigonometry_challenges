@@ -11,7 +11,7 @@ function setup() {
     const radian = calcRadian(degree);
 
     r.SetTraceLogLevel(r.LOG_ERROR);
-    r.InitWindow(width, height, "points around a circle");
+    r.InitWindow(width, height, "Polygon");
     r.SetTargetFPS(60);
 
     return {
